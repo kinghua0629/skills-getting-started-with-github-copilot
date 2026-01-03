@@ -149,18 +149,20 @@ def test_activity_participants_count(client):
 
 def test_signup_with_special_characters_in_email(client):
     """Test signup with various valid email formats"""
-    emails = [
-        "test.user@mergington.edu",
-        "test_user@mergington.edu",
-        "test+tag@mergington.edu"
+    from urllib.parse import quote
+    
+    test_cases = [
+        ("test.user@mergington.edu", "Art Club"),
+        ("test_user@mergington.edu", "Drama Club"),
+        ("test+tag@mergington.edu", "Math Club")
     ]
     
-    for email in emails:
+    for email, activity in test_cases:
         response = client.post(
-            f"/activities/Debate%20Team/signup?email={email}"
+            f"/activities/{quote(activity)}/signup?email={quote(email)}"
         )
         assert response.status_code == 200
-        assert email in activities["Debate Team"]["participants"]
+        assert email in activities[activity]["participants"]
 
 
 def test_all_activities_exist(client):
