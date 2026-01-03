@@ -17,6 +17,29 @@
         <h3>Available Activities</h3>
         <div id="activities-list">
           <!-- Activities will be loaded here -->
+<style>
+  #participants-list {
+    list-style-type: none; /* Hide bullet points */
+  }
+</style>
+
+<ul id="participants-list">
+  <!-- Example participant list -->
+  <li>
+    Participant 1 <button class="delete-btn" onclick="unregisterParticipant('participant1@example.com')">🗑️</button>
+  </li>
+  <li>
+    Participant 2 <button class="delete-btn" onclick="unregisterParticipant('participant2@example.com')">🗑️</button>
+  </li>
+</ul>
+
+<script>
+  function unregisterParticipant(email) {
+    // Logic to unregister participant
+    console.log('Unregistering:', email);
+    // You can make an API call here to unregister the participant
+  }
+</script>
           <p>Loading activities...</p>
         </div>
       </section>
